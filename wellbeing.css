@@ -7,16 +7,13 @@
 ----------------------------- */
 :root {
   /* Colors */
+  --light: #F9F8F4;
+  --light-green: #CBD0CD;
+  --dark-green: #566256;
+  --brown: #897866;
+  --dark: #151515;
   --white: #ffffff;
-  --white-bold: #fefefe;
-  --light: #f5f4f2;
-  --light-bold: #eceae7;
-  --dark: #242424;
-  --dark-bold: #111111;
   --black: #000000;
-  --black-bold: #050505;
-  --accent: #f4c095;
-  --accent-bold: #f2b080;
 
   /* Typography */
   --font-base: 'Poppins', sans-serif;
