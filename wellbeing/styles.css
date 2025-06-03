@@ -352,6 +352,7 @@ background: #242424;
   height: 100vh;
   border: none;
   margin-bottom: -2px;
+  padding-top: 0px !important;
 }
 
 .fluid-engine.fe-682d0f5690600d3d49b62fae {
@@ -474,7 +475,7 @@ div#yui_3_17_2_1_1747784112506_802 {
   background: none !important;
   padding: 0;
   font-family: inherit;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
