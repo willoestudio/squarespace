@@ -19,23 +19,11 @@ html, body {
   overflow-x: hidden !important;
 }
 
-@font-face {
-  font-family: 'TravelNovember';
-  src: url('https://static1.squarespace.com/static/681ddc94cfd70541be93a7e6/t/6826aa7682e5c35384637411/1747364470102/Travel+November.otf') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-#block-yui_3_17_2_1_1748479387045_62835 p {
-  font-family: 'TravelNovember', sans-serif;
-  font-size: 1.85rem;
-  padding-top: 5px;
-}
 
 .header-actions-action.header-actions-action--social {
   float: left;
   position: absolute;
-  left: 20px; /* Adjust this value as needed */
+  left: 20px; 
   top: 50%;
   transform: translateY(-50%);
 }
@@ -44,7 +32,86 @@ html, body {
   display: none !important;
 }
 
+/* Start Your Journey Text */
 
+.fluid-engine.fe-681ddc95cfd70541be93a894 {
+  height: calc(100vh - 7px) !important; 
+  min-height: 400px !important;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 600px) {
+  .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    position: relative !important;
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+}
+
+.fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px;
+  margin: 0 !important;
+  width: auto;
+  text-align: center;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+.fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  margin: 0 !important;
+  width: auto;
+  text-align: center;
+  z-index: 2;
+}
+
+}
+
+#block-yui_3_17_2_1_1747032934629_12418 {
+  bottom: -15px;
+  margin: 0 !important;
+  width: auto;
+  text-align: center;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  #block-yui_3_17_2_1_1747032934629_12418 {
+  bottom: 25px;
+  margin: 0 !important;
+  width: auto;
+  text-align: center;
+  z-index: 2;
+}
+}
+
+.custom-down-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.custom-down-arrow svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  stroke: #f0eeea;
+}
+
+.custom-down-arrow svg line,
+.custom-down-arrow svg polyline {
+  stroke: #f0eeea;
+  stroke-width: 2;
+}
 
 
 /* Hamburger Button Styles */
