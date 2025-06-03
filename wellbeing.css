@@ -1,85 +1,99 @@
-/* =============================
+/* ====================================
    Willoe Studio Wellbeing Template CSS
-   ============================= */
+   ==================================== */
 
 /* -----------------------------
    1. GLOBAL TOKENS (root styles)
 ----------------------------- */
 :root {
-    /* Colors */
-    --white: #ffffff;
-    --white-bold: #fefefe;
-    --light: #f5f4f2;
-    --light-bold: #eceae7;
-    --dark: #242424;
-    --dark-bold: #111111;
-    --black: #000000;
-    --black-bold: #050505;
-    --accent: #f4c095;
-    --accent-bold: #f2b080;
-  
-    /* Typography */
-    --font-base: 'Poppins', sans-serif;
-    --heading-weight: 500;
-    --body-weight: 400;
-    --bold-weight: 600;
-  
-    /* Layout */
-    --radius: 6px;
-    --section-gap: 6rem;
-  }
-  
-  /* -----------------------------
-     2. THEME SYSTEM
-  ----------------------------- */
-  [data-section-theme="white"] {
-    --primary-color: var(--white);
-    --secondary-color: var(--light);
-    --accent-color: var(--accent);
-    --alt-color: var(--black);
-  }
-  
-  [data-section-theme="dark"] {
-    --primary-color: var(--dark);
-    --secondary-color: var(--black);
-    --accent-color: var(--accent);
-    --alt-color: var(--white);
-  }
-  
-  [data-section-theme="accent"] {
-    --primary-color: var(--accent);
-    --secondary-color: var(--light);
-    --accent-color: var(--accent-bold);
-    --alt-color: var(--dark);
-  }
-  
-  /* -----------------------------
-     3. BASE LAYOUT
-  ----------------------------- */
-  body {
-    background-color: var(--primary-color);
-    color: var(--alt-color);
-    font-family: var(--font-base);
-    font-weight: var(--body-weight);
-    line-height: 1.6;
-    font-size: 1rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2, h3, h4, h5 {
-    font-family: var(--font-base);
-    font-weight: var(--heading-weight);
-    color: var(--alt-color);
-    margin: 0 0 1rem 0;
-  }
-  
-  /* Button Base */
-  button,
-  .sqs-button-element--primary,
-  .sqs-button-element--secondary {
-    font-family: var(--font-base);
-    border-radius: var(--radius);
-    transition: all 0.3s ease;
-  }
-  
+  /* Colors */
+  --white: #ffffff;
+  --white-bold: #fefefe;
+  --light: #f5f4f2;
+  --light-bold: #eceae7;
+  --dark: #242424;
+  --dark-bold: #111111;
+  --black: #000000;
+  --black-bold: #050505;
+  --accent: #f4c095;
+  --accent-bold: #f2b080;
+
+  /* Typography */
+  --font-base: 'Poppins', sans-serif;
+  --font-heading: 'Fraunces', serif;
+  --body-weight: 400;
+  --heading-weight: 500;
+  --bold-weight: 600;
+
+  /* Layout */
+  --global-radius: 6px;
+  --section-gap: 6rem;
+  --trans: all 0.3s ease;
+}
+
+/* -----------------------------
+   2. THEME SYSTEM
+----------------------------- */
+[data-section-theme="white"] {
+  --primary-color: var(--white);
+  --secondary-color: var(--light);
+  --accent-color: var(--accent);
+  --alt-color: var(--black);
+}
+
+[data-section-theme="dark"] {
+  --primary-color: var(--dark);
+  --secondary-color: var(--black);
+  --accent-color: var(--accent);
+  --alt-color: var(--white);
+}
+
+[data-section-theme="accent"] {
+  --primary-color: var(--accent);
+  --secondary-color: var(--light);
+  --accent-color: var(--accent-bold);
+  --alt-color: var(--dark);
+}
+
+/* -----------------------------
+   3. BASE LAYOUT
+----------------------------- */
+* {
+  font-family: var(--font-base);
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--alt-color);
+  font-weight: var(--body-weight);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  color: var(--alt-color);
+  margin: 0 0 1rem 0;
+}
+
+/* -----------------------------
+   4. BUTTONS
+----------------------------- */
+.sqs-button-element--primary,
+.sqs-button-element--secondary {
+  font-family: var(--font-base);
+  font-weight: var(--bold-weight);
+  border-radius: var(--global-radius);
+  transition: var(--trans);
+}
+
+.sqs-button-element--primary:hover::after {
+  content: "→";
+  margin-left: 0.5em;
+  transition: transform 0.3s ease;
+  transform: translateX(4px);
+}
