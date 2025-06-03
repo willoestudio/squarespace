@@ -35,7 +35,7 @@ html, body {
 /* Start Your Journey Text */
 
 .fluid-engine.fe-681ddc95cfd70541be93a894 {
-  height: calc(100vh - 7px) !important; 
+  height: calc(100vh - 60px) !important; 
   min-height: 400px !important;
   position: relative;
   overflow: hidden;
