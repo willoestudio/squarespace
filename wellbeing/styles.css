@@ -32,7 +32,7 @@ html, body {
   display: none !important;
 }
 
-/* Start Your Journey Text */
+/* Start Your Journey Text Block */
 
 .fluid-engine.fe-681ddc95cfd70541be93a894 {
   height: calc(100vh - 60px) !important; 
@@ -75,8 +75,10 @@ html, body {
 
 }
 
+/* Down Arrow positioning in header */
+
 #block-yui_3_17_2_1_1747032934629_12418 {
-  bottom: -15px;
+  bottom: -10px;
   margin: 0 !important;
   width: auto;
   text-align: center;
