@@ -1,5 +1,5 @@
-/* Willoe Studio - Wellbeing Coach Template*/
-/* Updated June 3, 2025 */
+/* Willoe Studio - Wellbeing Coach Template - Complete External Styles */
+/* Updated June 1, 2025 */
 /* Copyright Willoe Studio */
 /* www.willoestudio.com */
 
@@ -355,6 +355,7 @@ div#block-2dfe7b27eac0ee717612 a:hover,
 }
 
 #block-yui_3_17_2_1_1747032934629_12418 {
+  position: absolute !important;
   bottom: -15px;
   margin: 0 !important;
   width: auto;
@@ -390,12 +391,12 @@ div#yui_3_17_2_1_1747784112506_802 {
   display: block;
   width: 32px;
   height: 32px;
-  stroke: var(--brand-light);
+  stroke: #f0eeea;
 }
 
 .custom-down-arrow svg line,
 .custom-down-arrow svg polyline {
-  stroke: var(--brand-light);
+  stroke: #f0eeea;
   stroke-width: 2;
 }
 
