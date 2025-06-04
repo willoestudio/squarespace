@@ -51,12 +51,26 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 
 /* Mobile styles for hero section */
 @media (max-width: 600px) {
+  /* Default mobile with announcement bar visible */
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    height: calc(100vh - 200px) !important; /* Temporarily use a larger value */
-    background: rgba(255,0,0,0.1); /* Temporary red tint to see the container */
+    position: relative !important;
+    height: calc(100vh - 140px) !important; /* Adjust based on mobile header + announcement */
+    min-height: 400px !important;
+  }
+
+  @media (max-width: 600px) {
+    .fluid-engine.fe-681ddc95cfd70541be93a894 {
+      height: calc(100vh - 200px) !important; /* Temporarily use a larger value */
+      background: rgba(255,0,0,0.1); /* Temporary red tint to see the container */
+    }
+  }
+  
+  /* Mobile when announcement bar is hidden */
+  .sqs-announcement-bar-hidden ~ * .fluid-engine.fe-681ddc95cfd70541be93a894,
+  body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    height: calc(100vh - 100px) !important; /* Just mobile header */
   }
 }
-
 
 /* Text positioning at bottom */
 .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
