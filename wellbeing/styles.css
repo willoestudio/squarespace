@@ -72,12 +72,13 @@ html, body {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(10px + var(--sqs-site-header-height, 60px));
+  bottom: 20px; /* Or 30px if you want more space */
   margin: 0 !important;
   width: auto;
   text-align: center;
   z-index: 2;
 }
+
 
 @media (max-width: 600px) {
   #block-yui_3_17_2_1_1747032934629_12418 {
