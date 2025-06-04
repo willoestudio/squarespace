@@ -49,17 +49,22 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   height: calc(100vh - 60px) !important; /* Just the 60px header */
 }
 
+:root {
+  --vh: 1vh;
+}
+
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
     position: relative !important;
-    height: calc(100vh - 100px) !important; /* 60px header + 40px announcement */
+    height: calc(var(--vh, 1vh) * 100 - 100px) !important;
     min-height: 400px !important;
   }
 
   body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    height: calc(100vh - 60px) !important; /* Only header */
+    height: calc(var(--vh, 1vh) * 100 - 60px) !important;
   }
 }
+
 
 /* Text positioning at bottom */
 .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
