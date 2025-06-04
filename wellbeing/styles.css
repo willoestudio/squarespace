@@ -52,8 +52,8 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 /* Mobile styles for hero section */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    height: calc(100% - 40px) !important;
-    min-height: 400px !important;
+    height: calc(100vh - 100px) !important; /* 60px header + 40px announcement bar - ADJUST THIS */
+    min-height: 100% !important;
     position: relative;
     overflow: hidden;
     padding-bottom: 0 !important;
