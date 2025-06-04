@@ -149,7 +149,7 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 body:has(.sqs-announcement-bar:not(.sqs-announcement-bar-hidden)) #custom-hamburger,
 .sqs-announcement-bar:not([style*="display: none"]) ~ * #custom-hamburger,
 body:has(.sqs-announcement-bar:not([style*="display: none"])) #custom-hamburger {
-  top: calc(1.6vw + 40px); /* Adjust 40px to match your announcement bar height */
+  top: calc(1.6vw + 0px); 
 }
 
 /* Additional selector for when announcement bar has content and is visible */
