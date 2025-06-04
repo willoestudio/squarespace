@@ -52,10 +52,20 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 /* Mobile styles for hero section */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: calc(100vh - 100px) !important; /* 60px header + 40px announcement bar - ADJUST THIS */
+    min-height: 400px !important;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 0 !important;
   }
+}
+
+/* When announcement bar is hidden on mobile */
+@media (max-width: 600px) {
+.sqs-announcement-bar-hidden ~ * .fluid-engine.fe-681ddc95cfd70541be93a894,
+body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+  height: calc(100vh - 60px) !important; /* Just the 60px header */
+}
 }
 
 /* Text positioning at bottom */
