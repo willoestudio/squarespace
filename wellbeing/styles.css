@@ -34,7 +34,7 @@ html, body {
 
 /* Hero section height accounts for header + announcement bar */
 .fluid-engine.fe-681ddc95cfd70541be93a894 {
-  height: calc(100vh - var(--sqs-site-header-height, 60px)) !important;
+  height: calc(100vh - var(--sqs-site-header-height)) !important;
   min-height: 400px !important;
   position: relative;
   overflow: hidden;
@@ -54,7 +54,7 @@ html, body {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(20px + var(--sqs-site-header-height, 60px));
+  bottom:  calc(0px + var(--sqs-site-header-height, 0px)));
   margin: 0 !important;
   width: auto;
   text-align: center;
@@ -72,7 +72,7 @@ html, body {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(10px + var(--sqs-site-header-height, 60px));
+  bottom:  calc(0px + var(--sqs-site-header-height, 0px));
   margin: 0 !important;
   width: auto;
   text-align: center;
