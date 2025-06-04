@@ -32,61 +32,79 @@ html, body {
   display: none !important;
 }
 
-/* Hero section height accounts for header + announcement bar */
+/* Text Sitting at bottom of hero video */
+
+/* Default: When announcement bar IS visible (no hidden class) */
 .fluid-engine.fe-681ddc95cfd70541be93a894 {
-  height: calc(100vh - var(--sqs-site-header-height, 60px)) !important;
+  height: calc(100vh - 100px) !important; /* 60px header + 40px announcement bar - ADJUST THIS */
   min-height: 400px !important;
   position: relative;
   overflow: hidden;
   padding-bottom: 0 !important;
 }
 
+/* When announcement bar is hidden */
+.sqs-announcement-bar-hidden ~ * .fluid-engine.fe-681ddc95cfd70541be93a894,
+body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+  height: calc(100vh - 60px) !important; /* Just the 60px header */
+}
+
+/* Mobile styles for hero section */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    position: relative !important;
     height: 100% !important;
     min-height: 100% !important;
-    position: relative !important;
   }
 }
 
-/* “Start Your Journey” text positioning */
+/* Text positioning at bottom */
 .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(20px + var(--sqs-site-header-height, 60px));
+  bottom: -5px;
   margin: 0 !important;
   width: auto;
   text-align: center;
   z-index: 2;
 }
 
+/* Mobile text positioning */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
+    position: absolute !important;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 20px;
+    margin: 0 !important;
+    width: auto;
+    text-align: center;
+    z-index: 2;
   }
 }
 
-/* Down arrow positioning */
+/* Down Arrow positioning at bottom of header */
 #block-yui_3_17_2_1_1747032934629_12418 {
-  position: absolute !important;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20px; /* Or 30px if you want more space */
+  bottom: -10px;
   margin: 0 !important;
   width: auto;
   text-align: center;
   z-index: 2;
 }
 
-
+/* Mobile arrow positioning */
 @media (max-width: 600px) {
   #block-yui_3_17_2_1_1747032934629_12418 {
     bottom: 27px;
+    margin: 0 !important;
+    width: auto;
+    text-align: center;
+    z-index: 2;
   }
 }
 
-/* Down arrow style */
+/* Arrow styling */
 .custom-down-arrow {
   display: flex;
   justify-content: center;
@@ -105,7 +123,6 @@ html, body {
   stroke: #f0eeea;
   stroke-width: 2;
 }
-
 
 
 /* Hamburger Button Styles */
