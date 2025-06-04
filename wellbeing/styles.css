@@ -32,10 +32,9 @@ html, body {
   display: none !important;
 }
 
-/* Start Your Journey Text Block */
-
+/* Hero section height accounts for header + announcement bar */
 .fluid-engine.fe-681ddc95cfd70541be93a894 {
-  height: calc(100vh - 60px) !important; 
+  height: calc(100vh - var(--sqs-site-header-height, 60px)) !important;
   min-height: 400px !important;
   position: relative;
   overflow: hidden;
@@ -44,17 +43,18 @@ html, body {
 
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    position: relative !important;
     height: 100% !important;
     min-height: 100% !important;
+    position: relative !important;
   }
 }
 
+/* “Start Your Journey” text positioning */
 .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -5px;
+  bottom: calc(20px + var(--sqs-site-header-height, 60px));
   margin: 0 !important;
   width: auto;
   text-align: center;
@@ -62,23 +62,17 @@ html, body {
 }
 
 @media (max-width: 600px) {
-.fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
+  .fluid-engine.fe-681ddc95cfd70541be93a894 .fe-block.fe-block-yui_3_17_2_1_1747032934629_11713 {
+    bottom: 20px;
+  }
+}
+
+/* Down arrow positioning */
+#block-yui_3_17_2_1_1747032934629_12418 {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 20px;
-  margin: 0 !important;
-  width: auto;
-  text-align: center;
-  z-index: 2;
-}
-
-}
-
-/* Down Arrow positioning in header */
-
-#block-yui_3_17_2_1_1747032934629_12418 {
-  bottom: -10px;
+  bottom: calc(10px + var(--sqs-site-header-height, 60px));
   margin: 0 !important;
   width: auto;
   text-align: center;
@@ -87,19 +81,15 @@ html, body {
 
 @media (max-width: 600px) {
   #block-yui_3_17_2_1_1747032934629_12418 {
-  bottom: 27px;
-  margin: 0 !important;
-  width: auto;
-  text-align: center;
-  z-index: 2;
-}
+    bottom: 27px;
+  }
 }
 
+/* Down arrow style */
 .custom-down-arrow {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .custom-down-arrow svg {
@@ -114,6 +104,7 @@ html, body {
   stroke: #f0eeea;
   stroke-width: 2;
 }
+
 
 
 /* Hamburger Button Styles */
