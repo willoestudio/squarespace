@@ -54,21 +54,14 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   /* Default mobile with announcement bar visible */
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
     position: relative !important;
-    height: calc(100vh - 140px) !important; /* Adjust based on mobile header + announcement */
+    height: calc(100vh - 180px) !important; /* Try increasing this number */
     min-height: 400px !important;
-  }
-
-  @media (max-width: 600px) {
-    .fluid-engine.fe-681ddc95cfd70541be93a894 {
-      height: calc(100vh - 200px) !important; /* Temporarily use a larger value */
-      background: rgba(255,0,0,0.1); /* Temporary red tint to see the container */
-    }
   }
   
   /* Mobile when announcement bar is hidden */
   .sqs-announcement-bar-hidden ~ * .fluid-engine.fe-681ddc95cfd70541be93a894,
   body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    height: calc(100vh - 100px) !important; /* Just mobile header */
+    height: calc(100vh - 140px) !important; /* Adjust this too */
   }
 }
 
