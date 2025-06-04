@@ -56,6 +56,11 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
     height: 100% !important;
     min-height: 100% !important;
   }
+
+  body:not(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    height: 92vh !important;
+  }
+
 }
 
 /* Text positioning at bottom */
