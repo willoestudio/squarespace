@@ -49,12 +49,12 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   height: calc(100vh - 60px) !important; /* Just the 60px header */
 }
 
-/* Mobile styles for hero section */
+/* Mobile fix: use 100svh (iOS-safe) instead of 100vh */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: auto !important;
+    min-height: 100svh !important; /* iOS 16+ supports this */
+    padding-bottom: 80px !important; /* Enough space for the text/arrow */
   }
 }
 
