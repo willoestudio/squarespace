@@ -140,6 +140,7 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   box-shadow: none !important;
   outline: none !important;
   gap: 12px;
+  transition: top 0.3s ease; /* Smooth transition */
 }
 
 /* Mobile position */
