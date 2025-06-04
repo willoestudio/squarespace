@@ -126,14 +126,14 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 
 
 /* Hamburger Button Styles */
-/* Default (desktop) position - when announcement bar is visible */
+/* Default (desktop) position - assumes no announcement bar */
 #custom-hamburger {
   position: fixed;
   background: transparent;
   border: none;
   cursor: pointer;
   right: 2vw;
-  top: calc(1.6vw + 40px); /* Adjust 40px to match your announcement bar height */
+  top: 1.6vw; /* Default position */
   z-index: 1001;
   display: flex;
   align-items: center;
@@ -141,12 +141,20 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   box-shadow: none !important;
   outline: none !important;
   gap: 12px;
+  transition: top 0.3s ease; /* Smooth transition */
 }
 
-/* When announcement bar is hidden */
-.sqs-announcement-bar-hidden ~ * #custom-hamburger,
-body:has(.sqs-announcement-bar-hidden) #custom-hamburger {
-  top: 1.6vw; /* Original position without announcement bar */
+/* When announcement bar exists and is visible */
+.sqs-announcement-bar:not(.sqs-announcement-bar-hidden) ~ * #custom-hamburger,
+body:has(.sqs-announcement-bar:not(.sqs-announcement-bar-hidden)) #custom-hamburger,
+.sqs-announcement-bar:not([style*="display: none"]) ~ * #custom-hamburger,
+body:has(.sqs-announcement-bar:not([style*="display: none"])) #custom-hamburger {
+  top: calc(1.6vw + 40px); /* Adjust 40px to match your announcement bar height */
+}
+
+/* Additional selector for when announcement bar has content and is visible */
+.sqs-announcement-bar:not(:empty):not(.sqs-announcement-bar-hidden) ~ * #custom-hamburger {
+  top: calc(1.6vw + 40px);
 }
 
 /* Mobile position */
