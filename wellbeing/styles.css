@@ -54,8 +54,8 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   /* Default mobile with announcement bar visible */
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
     position: relative !important;
-    height: calc(100vh - 180px) !important; /* Try increasing this number */
-    min-height: 400px !important;
+    height: calc(100vh - 40px) !important; /* Try increasing this number */
+    min-height: 600px !important;
   }
   
   /* Mobile when announcement bar is hidden */
