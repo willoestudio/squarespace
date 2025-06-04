@@ -49,12 +49,15 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   height: calc(100vh - 60px) !important; /* Just the 60px header */
 }
 
-/* Mobile styles for hero section */
 @media (max-width: 600px) {
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
     position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: calc(100vh - 100px) !important; /* 60px header + 40px announcement */
+    min-height: 400px !important;
+  }
+
+  body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    height: calc(100vh - 60px) !important; /* Only header */
   }
 }
 
