@@ -54,7 +54,7 @@ html, body {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(20px + var(--sqs-site-header-height));
+  bottom: calc(20px + var(--sqs-site-header-height, 60px));
   margin: 0 !important;
   width: auto;
   text-align: center;
@@ -72,7 +72,7 @@ html, body {
   position: absolute !important;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(10px + var(--sqs-site-header-height));
+  bottom: calc(10px + var(--sqs-site-header-height, 60px));
   margin: 0 !important;
   width: auto;
   text-align: center;
