@@ -58,7 +58,7 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   }
 
   body:not(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
-    height: 92vh !important;
+    height: 82vh !important;
   }
 
 }
