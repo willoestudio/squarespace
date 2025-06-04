@@ -126,14 +126,14 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 
 
 /* Hamburger Button Styles */
-/* Default (desktop) position */
+/* Default (desktop) position - when announcement bar is visible */
 #custom-hamburger {
   position: fixed;
   background: transparent;
   border: none;
   cursor: pointer;
   right: 2vw;
-  top: 1.6vw;
+  top: calc(1.6vw + 40px); /* Adjust 40px to match your announcement bar height */
   z-index: 1001;
   display: flex;
   align-items: center;
@@ -143,6 +143,12 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   gap: 12px;
 }
 
+/* When announcement bar is hidden */
+.sqs-announcement-bar-hidden ~ * #custom-hamburger,
+body:has(.sqs-announcement-bar-hidden) #custom-hamburger {
+  top: 1.6vw; /* Original position without announcement bar */
+}
+
 /* Mobile position */
 @media screen and (max-width: 768px) {
   #custom-hamburger {
@@ -150,6 +156,7 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   }
 }
 
+/* Rest of your existing hamburger CSS remains the same */
 .custom-burger-box {
   display: flex;
   align-items: center;
