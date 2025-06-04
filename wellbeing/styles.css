@@ -51,10 +51,17 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
 
 /* Mobile styles for hero section */
 @media (max-width: 600px) {
+  /* Default mobile with announcement bar visible */
   .fluid-engine.fe-681ddc95cfd70541be93a894 {
     position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: calc(100vh - 140px) !important; /* Adjust based on mobile header + announcement bar height */
+    min-height: 400px !important;
+  }
+  
+  /* Mobile when announcement bar is hidden */
+  .sqs-announcement-bar-hidden ~ * .fluid-engine.fe-681ddc95cfd70541be93a894,
+  body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894 {
+    height: calc(100vh - 100px) !important; /* Adjust based on mobile header height only */
   }
 }
 
@@ -123,7 +130,6 @@ body:has(.sqs-announcement-bar-hidden) .fluid-engine.fe-681ddc95cfd70541be93a894
   stroke: #f0eeea;
   stroke-width: 2;
 }
-
 
 /* Hamburger Button Styles */
 #custom-hamburger {
