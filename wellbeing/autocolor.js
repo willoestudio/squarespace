@@ -7,17 +7,26 @@ document.addEventListener('DOMContentLoaded', function () {
       theme: 'body',
       variable: '--body-background',
       fallback: '#ffffff',
-      class: 'body' // ⬅️ this is the important change
+      class: 'body',
+      type: 'background'
+    },
+    {
+      theme: 'body',
+      variable: '--body-font-color',
+      fallback: '#242424',
+      class: 'body',
+      type: 'font'
     }
   ];
 
-  themeColors.forEach(({ theme, variable, fallback, class: className }) => {
+  themeColors.forEach(({ theme, variable, fallback, class: className, type }) => {
     let el =
       document.querySelector(`[data-section-theme="${theme}"]`) ||
       document.querySelector(`.${className}`);
-    let color = el
-      ? getComputedStyle(el).getPropertyValue('--siteBackgroundColor').trim()
-      : '';
+
+    let prop = type === 'font' ? '--siteFontColor' : '--siteBackgroundColor';
+
+    let color = el ? getComputedStyle(el).getPropertyValue(prop).trim() : '';
     document.documentElement.style.setProperty(variable, color || fallback);
   });
 });
