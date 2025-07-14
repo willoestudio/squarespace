@@ -215,8 +215,7 @@
     margin: auto;
     content: "";
     width: 100%;
-    transition: transform var(--transition-slow) var(--ease-out-expo), 
-                width var(--transition-slow) var(--ease-out-expo);
+    transition: transform 400ms cubic-bezier(.4,0,.2,1),width 400ms cubic-bezier(.4,0,.2,1);
     will-change: transform, width;
   }
   
@@ -226,8 +225,7 @@
     height: var(--hamburger-line-height);
     background: var(--color-dark-accent);
     width: 100%;
-    transition: transform var(--transition-slow) var(--ease-out-expo), 
-                width var(--transition-slow) var(--ease-out-expo);
+    transition: transform 400ms cubic-bezier(.4,0,.2,1),width 400ms cubic-bezier(.4,0,.2,1);
   }
   
   .top-line {
@@ -286,9 +284,7 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-100%);
-    transition: opacity var(--transition-slower) var(--ease-out-expo),
-                transform var(--transition-slower) var(--ease-out-expo),
-                visibility 0s linear var(--transition-slower);
+    transition: opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1),visibility 0s linear .6s;
     z-index: var(--z-index-modal);
   }
   
@@ -296,9 +292,7 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition: opacity var(--transition-slower) var(--ease-out-expo),
-                transform var(--transition-slower) var(--ease-out-expo),
-                visibility 0s linear 0s;
+    transition: opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1),visibility 0s linear 0s;
   }
   
   #custom-popout-menu {
