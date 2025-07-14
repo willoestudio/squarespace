@@ -1,4 +1,4 @@
-// MENU.JS — CUSTOM HAMBURGER MENU + POPOUT BEHAVIOR
+// MENU.JS — CUSTOM HAMBURGER MENU + POPOUT BEHAVIOR + MOBILE BOOK BUTTON
 
 document.addEventListener("DOMContentLoaded", function () {
   // Insert custom hamburger template
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   insertCustomMenu();
 
-  // Keep checking for changes in DOM and insert menu if necessary
   const headerObserver = new MutationObserver(insertCustomMenu);
   headerObserver.observe(document.body, { childList: true, subtree: true });
 
@@ -69,4 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 400);
     }
   });
+
+  // MOBILE MENU "BOOK NOW" BUTTON
+  const menuFolder = document.querySelector(".header-menu-nav-folder-content");
+  if (menuFolder && !document.querySelector(".mobile-menu-book-btn")) {
+    const button = document.createElement("a");
+    button.href = "/book";
+    button.textContent = "Book Now";
+    button.className = "mobile-menu-book-btn";
+    menuFolder.appendChild(button);
+  }
 });
