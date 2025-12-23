@@ -1,0 +1,17 @@
+/wellbeing/styles.min.css
+  Content-Type: text/css
+  Cache-Control: public, max-age=604800
+  X-Content-Type-Options: nosniff
+
+/wellbeing/template.min.js
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=604800
+  X-Content-Type-Options: nosniff
+
+# Optional: Prevent indexing by search engines
+/wellbeing/*
+  X-Robots-Tag: noindex
+
+# Optional: Add CORS support if needed for external domains
+# /wellbeing/*
+#   Access-Control-Allow-Origin: *
