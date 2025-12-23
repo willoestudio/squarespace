@@ -1,0 +1,323 @@
+/* ================================
+   Base Styles for Squarespace Template
+   Uses native Squarespace design system
+   ================================ */
+
+/* ================================
+   Made with love by Willoe Studio
+   www.willoestudio.com
+   ================================ */
+
+:root {
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* ================================
+   Base Reset
+   ================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body uses Squarespace's native variables */
+body {
+  font-family: @bodyFont;
+  color: @textColor;
+  background-color: @backgroundColor;
+}
+
+/* ================================
+   Typography
+   Uses Squarespace Style Editor fonts & colors
+   ================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @headingFont;
+  font-weight: @headingFontWeight;
+  color: @headingColor;
+  line-height: 1.25;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: @headingLetterSpacing;
+}
+
+h2 {
+  font-size: 2.25rem;
+  letter-spacing: @headingLetterSpacing;
+}
+
+h3 {
+  font-size: 1.875rem;
+  letter-spacing: @headingLetterSpacing;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
+
+/* Links use Squarespace link colors */
+a {
+  color: @linkColor;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: @linkColorHover;
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+li {
+  margin-bottom: var(--space-sm);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================================
+   Buttons
+   Uses Squarespace button styles
+   ================================ */
+
+.sqs-block-button-element,
+.sqs-button-element--primary {
+  background-color: @primaryButtonBackgroundColor;
+  color: @primaryButtonTextColor;
+  font-family: @buttonFont;
+  font-weight: @buttonFontWeight;
+  letter-spacing: @buttonLetterSpacing;
+  border-radius: @buttonBorderRadius;
+  transition: all var(--transition-base);
+}
+
+.sqs-block-button-element:hover,
+.sqs-button-element--primary:hover {
+  background-color: @primaryButtonBackgroundColorHover;
+  color: @primaryButtonTextColorHover;
+}
+
+.sqs-button-element--secondary {
+  background-color: @secondaryButtonBackgroundColor;
+  color: @secondaryButtonTextColor;
+  font-family: @buttonFont;
+  font-weight: @buttonFontWeight;
+  letter-spacing: @buttonLetterSpacing;
+  border-radius: @buttonBorderRadius;
+  transition: all var(--transition-base);
+}
+
+.sqs-button-element--secondary:hover {
+  background-color: @secondaryButtonBackgroundColorHover;
+  color: @secondaryButtonTextColorHover;
+}
+
+/* ================================
+   Forms
+   Uses Squarespace form styles
+   ================================ */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  font-family: @bodyFont;
+  color: @textColor;
+  background-color: @formFieldBackgroundColor;
+  border: 1px solid @formFieldBorderColor;
+  border-radius: @formFieldBorderRadius;
+  transition: border-color var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: @accentColor;
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.container-sm {
+  max-width: var(--container-sm);
+}
+
+.container-md {
+  max-width: var(--container-md);
+}
+
+.container-lg {
+  max-width: var(--container-lg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Responsive visibility */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ================================
+   Section Spacing Utilities
+   ================================ */
+
+.section-spacing-sm {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+.section-spacing-md {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.section-spacing-lg {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+.section-spacing-xl {
+  padding-top: var(--space-5xl);
+  padding-bottom: var(--space-5xl);
+}
+
+/* ================================
+   Responsive Typography
+   ================================ */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+}
