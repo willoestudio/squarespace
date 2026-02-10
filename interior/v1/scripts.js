@@ -95,7 +95,7 @@
 
       gridImage.appendChild(titleOverlay);
     });
-  }
+  } 
 
   /* =========================
      BLOG HOVER OVERLAY
