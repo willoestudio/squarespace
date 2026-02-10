@@ -2,7 +2,7 @@
 /* Uncomment this line when you need to edit the site title */
  /* .sqs-edit-mode-active .header-nav { display: none !important; } */
 
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -598,4 +598,4 @@ footer a:hover {
   .blog-item-content .sqs-block[class*=float-right] {
     margin-left: 0px;
 }
-}
+} 
