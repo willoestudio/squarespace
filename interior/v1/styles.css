@@ -2,6 +2,16 @@
 /* Uncomment this line when you need to edit the site title */
  /* .sqs-edit-mode-active .header-nav { display: none !important; } */
 
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* Split Navigation - Flush Left & Right */
 .header-nav {
