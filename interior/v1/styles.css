@@ -339,46 +339,52 @@ button#site-title-outline {
     z-index: 600;
 }
 
-body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper {
+#portfolio-projects .sqs-gallery-container .sqs-wrapper {
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
-body #page #portfolio-projects .sqs-gallery-container {
+#portfolio-projects .sqs-gallery-container {
   width: 100vw !important;
   max-width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
 }
 
+#portfolio-projects .sqs-gallery-container .sqs-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
 /* Tile sizing */
-body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper > a,
-body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper > img {
+#portfolio-projects .sqs-gallery-container .sqs-wrapper > a,
+#portfolio-projects .sqs-gallery-container .sqs-wrapper > img {
   flex: 0 0 420px;
   aspect-ratio: 3 / 2;
   overflow: hidden;
   display: block;
 }
 
+/* Mobile adjustments */
 @media screen and (max-width: 767px) {
-  body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper > a,
-  body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper > img {
+
+ #portfolio-projects .sqs-gallery-container .sqs-wrapper > a,
+ #portfolio-projects .sqs-gallery-container .sqs-wrapper > img {
     flex: 0 0 70vw !important;
     min-height: 200px !important;
   }
-
-  body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper {
+  
+ #portfolio-projects .sqs-gallery-container .sqs-wrapper {
     gap: 16px !important;
   }
 }
 
-body #page #portfolio-projects .sqs-gallery-design-strip {
+#portfolio-projects .sqs-gallery-design-strip {
   overflow: visible !important;
 }
 
-
 /* Image fill */
-body #page #portfolio-projects .sqs-gallery-container .sqs-wrapper img {
+#portfolio-projects .sqs-gallery-container .sqs-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -396,7 +402,7 @@ a {
 }
 
 /* Position the gallery slides */
-body #page #portfolio-projects a.sqs-gallery-design-strip-slide {
+#portfolio-projects a.sqs-gallery-design-strip-slide {
   position: relative;
   display: block;
   overflow: hidden;
