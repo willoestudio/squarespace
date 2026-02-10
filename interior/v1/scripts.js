@@ -6,7 +6,7 @@
      ========================= */
   function applyMarkers() {
     const markers = document.querySelectorAll("[data-marker]");
-    markers.forEach(function (marker) {
+    markers.forEach((marker) => {
       const name = marker.getAttribute("data-marker");
       if (!name) return;
 
@@ -34,7 +34,6 @@
     if (!section) return;
 
     const images = section.querySelectorAll(".sqs-block-image img");
-
     images.forEach((img) => (img.style.opacity = ""));
 
     if (images[0]) images[0].style.opacity = "0.9";
@@ -44,44 +43,39 @@
   /* =========================
      GALLERY / PORTFOLIO OVERLAYS
      ========================= */
-  function addTitleOverlays() {
+  function addGalleryOverlays() {
     // Carousel slides
-    const slides = document.querySelectorAll("a.sqs-gallery-design-strip-slide");
-
-    slides.forEach((slide) => {
+    document.querySelectorAll("a.sqs-gallery-design-strip-slide").forEach((slide) => {
       if (slide.querySelector(".custom-gallery-title")) return;
 
       const img = slide.querySelector("img[alt]");
       const alt = img ? (img.getAttribute("alt") || "").trim() : "";
       if (!alt) return;
 
-      const titleOverlay = document.createElement("div");
-      titleOverlay.className = "custom-gallery-title";
-      titleOverlay.textContent = alt;
-      slide.appendChild(titleOverlay);
+      const overlay = document.createElement("div");
+      overlay.className = "custom-gallery-title";
+      overlay.textContent = alt;
+      slide.appendChild(overlay);
     });
 
-    // Standalone img slides
-    const imgSlides = document.querySelectorAll("img.sqs-gallery-design-strip-slide[alt]");
-    imgSlides.forEach((img) => {
+    // Standalone image slides
+    document.querySelectorAll("img.sqs-gallery-design-strip-slide[alt]").forEach((img) => {
       const parent = img.parentElement;
-      if (!parent) return;
-      if (parent.querySelector(".custom-gallery-title")) return;
-
-      parent.style.position = "relative";
+      if (!parent || parent.querySelector(".custom-gallery-title")) return;
 
       const alt = (img.getAttribute("alt") || "").trim();
       if (!alt) return;
 
-      const titleOverlay = document.createElement("div");
-      titleOverlay.className = "custom-gallery-title";
-      titleOverlay.textContent = alt;
-      parent.appendChild(titleOverlay);
+      parent.style.position = "relative";
+
+      const overlay = document.createElement("div");
+      overlay.className = "custom-gallery-title";
+      overlay.textContent = alt;
+      parent.appendChild(overlay);
     });
 
     // Portfolio grid items
-    const gridItems = document.querySelectorAll(".portfolio-grid-basic .grid-item");
-    gridItems.forEach((item) => {
+    document.querySelectorAll(".portfolio-grid-basic .grid-item").forEach((item) => {
       if (item.querySelector(".custom-gallery-title")) return;
 
       const gridImage = item.querySelector(".grid-image");
@@ -89,215 +83,66 @@
 
       gridImage.style.position = "relative";
 
-      const titleOverlay = document.createElement("div");
-      titleOverlay.className = "custom-gallery-title portfolio-view-project";
-      titleOverlay.textContent = "View Project";
+      const overlay = document.createElement("div");
+      overlay.className = "custom-gallery-title portfolio-view-project";
+      overlay.textContent = "View Project";
 
-      gridImage.appendChild(titleOverlay);
+      gridImage.appendChild(overlay);
     });
-  } 
+  }
 
   /* =========================
      BLOG HOVER OVERLAY
      ========================= */
   function addBlogHoverText() {
-    const blogPosts = document.querySelectorAll(".blog-basic-grid--container");
-
-    blogPosts.forEach((post) => {
+    document.querySelectorAll(".blog-basic-grid--container").forEach((post) => {
       if (post.querySelector(".custom-blog-hover")) return;
 
       const imageWrapper = post.querySelector(".image-wrapper");
       if (!imageWrapper) return;
 
-      const hoverOverlay = document.createElement("div");
-      hoverOverlay.className = "custom-blog-hover";
-      hoverOverlay.textContent = "Read More";
-
       imageWrapper.style.position = "relative";
-      imageWrapper.appendChild(hoverOverlay);
+
+      const overlay = document.createElement("div");
+      overlay.className = "custom-blog-hover";
+      overlay.textContent = "Read More";
+
+      imageWrapper.appendChild(overlay);
     });
   }
 
   /* =========================
-     RUNNERS
+     MASTER RUNNER
      ========================= */
   function runAll() {
     applyMarkers();
     dimFirstTwoApproachImages();
-    addTitleOverlays();
+    addGalleryOverlays();
     addBlogHoverText();
   }
 
-  function scheduleReruns() {
+  function scheduleRetries() {
     setTimeout(runAll, 500);
     setTimeout(runAll, 1500);
     setTimeout(runAll, 2500);
   }
 
-  function observeDomChanges() {
-    const obs = new MutationObserver(function () {
-      runAll();
-    });
-    obs.observe(document.body, { childList: true, subtree: true });
-  }
-
-  // Init
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      runAll();
-      scheduleReruns();
-      observeDomChanges();
-    });
-  } else {
-    runAll();
-    scheduleReruns();
-    observeDomChanges();
-  }
-
-  // Re-run on gallery control clicks
-  document.addEventListener("click", function (e) {
-    if (e.target.closest(".sqs-gallery-controls")) {
-      setTimeout(addTitleOverlays, 500);
-    }
-  });
-})();
-
-(function () {
-  "use strict";
-
-  const POPUP_PAGE = "/desktop-menu";
-
-  function isEditMode() {
-    return document.body.classList.contains("sqs-edit-mode");
-  }
-
-  function insertMenuTemplate() {
-    const template = document.getElementById("custom-hamburger-template");
-    const headerActions = document.querySelector(".header-actions");
-    if (!template || !headerActions) return;
-
-    // Already inserted?
-    if (headerActions.querySelector(".custom-popout-menu")) return;
-
-    headerActions.appendChild(template.content.cloneNode(true));
-  }
-
-  function ensureMenuContentLoaded() {
-    const target = document.getElementById("custom-popout-menu");
-    if (!target || target.dataset.loaded === "true") return;
-
-    target.dataset.loaded = "true";
-
-    fetch(POPUP_PAGE)
-      .then((res) => res.text())
-      .then((html) => {
-        const doc = new DOMParser().parseFromString(html, "text/html");
-        const content = doc.querySelector("#page .page-section");
-        if (content) target.innerHTML = content.outerHTML;
-      })
-      .catch(() => {});
-  }
-
-  function bindHamburgerOnce() {
-    const hamburger = document.getElementById("custom-hamburger");
-    const popOutMenu = document.getElementById("custom-pop-out");
-    if (!hamburger || !popOutMenu) return false;
-
-    // Prevent double-binding
-    if (hamburger.dataset.wsBound === "true") return true;
-    hamburger.dataset.wsBound = "true";
-
-    const textEl = hamburger.querySelector(".custom-burger-text");
-    const headerTitle = document.querySelector(".header-title");
-    const headerNav = document.querySelector(".header-nav");
-    const defaultText = textEl ? textEl.textContent : "Menu";
-    const openText = "Close";
-
-    function setHeaderOpacity(isOpen) {
-      if (headerTitle) headerTitle.style.opacity = isOpen ? "0" : "1";
-      if (headerNav) headerNav.style.opacity = isOpen ? "0" : "1";
-    }
-
-    function syncEditModeState() {
-      const expanded = isEditMode() && window.location.pathname === POPUP_PAGE;
-      hamburger.setAttribute("aria-expanded", String(expanded));
-      popOutMenu.classList.toggle("menu-visible", expanded);
-      popOutMenu.classList.toggle("menu-hidden", !expanded);
-      if (textEl) textEl.textContent = expanded ? openText : defaultText;
-      setHeaderOpacity(expanded);
-    }
-
-    hamburger.addEventListener("click", () => {
-      // Don’t allow toggling while editing the menu source page
-      if (isEditMode() && window.location.pathname === POPUP_PAGE) return;
-
-      const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
-      const willOpen = !isExpanded;
-
-      hamburger.setAttribute("aria-expanded", String(willOpen));
-      popOutMenu.classList.toggle("menu-visible", willOpen);
-      popOutMenu.classList.toggle("menu-hidden", !willOpen);
-
-      if (textEl) textEl.textContent = willOpen ? openText : defaultText;
-      setHeaderOpacity(willOpen);
-
-      // Make sure content is present when opening
-      if (willOpen) ensureMenuContentLoaded();
-    });
-
-    // React to edit-mode toggles
-    new MutationObserver(syncEditModeState).observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    // Initial state
-    ensureMenuContentLoaded();
-    syncEditModeState();
-
-    return true;
-  }
-
-  function applyDataAttributesSafe() {
-    // Keep your existing nth-of-type approach, but retry-safe
-    const hero = document.querySelector(".page-section:nth-of-type(1)");
-    if (hero) hero.setAttribute("data-section", "hero");
-
-    const approach = document.querySelector(".page-section:nth-of-type(2)");
-    if (approach) approach.setAttribute("data-section", "approach");
-
-    const portfolio = document.querySelector(".page-section:nth-of-type(4)");
-    if (portfolio) portfolio.setAttribute("data-section", "portfolio-projects");
-
-    const approachShapes = document.querySelectorAll(
-      '[data-section="approach"] .sqs-block[data-definition-name="website.components.shape"]'
-    );
-    if (approachShapes[0]) approachShapes[0].setAttribute("data-shape", "shape-bg");
-
-    const pinnedText = document.querySelector("#hero-text .fe-block:first-of-type");
-    if (pinnedText) pinnedText.setAttribute("data-block", "pinned-text");
-  }
-
   function init() {
-    let attempts = 0;
+    runAll();
+    scheduleRetries();
 
-    const tryInit = () => {
-      insertMenuTemplate();
-      applyDataAttributesSafe();
+    // Watch for Squarespace DOM updates
+    new MutationObserver(runAll).observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
-      if (bindHamburgerOnce()) return;
-
-      attempts += 1;
-      if (attempts < 40) setTimeout(tryInit, 150);
-    };
-
-    tryInit();
-
-    // If Squarespace re-renders header, re-insert + rebind
-    new MutationObserver(() => {
-      insertMenuTemplate();
-      bindHamburgerOnce();
-    }).observe(document.body, { childList: true, subtree: true });
+    // Re-run overlays when gallery navigation changes
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".sqs-gallery-controls")) {
+        setTimeout(addGalleryOverlays, 400);
+      }
+    });
   }
 
   if (document.readyState === "loading") {
