@@ -1,120 +1,163 @@
 (function () {
-  function init() {
-    // Insert custom hamburger template
-    function insertCustomMenu() {
-      const template = document.getElementById("custom-hamburger-template");
-      const alreadyInserted = document.querySelector(".custom-popout-menu");
-      const headerActions = document.querySelector(".header-actions");
+  "use strict";
 
-      if (!alreadyInserted && headerActions && template) {
-        const clone = template.content.cloneNode(true);
-        headerActions.appendChild(clone);
+  /* =========================
+     MARKER SYSTEM
+     ========================= */
+  function applyMarkers() {
+    const markers = document.querySelectorAll("[data-marker]");
+    markers.forEach(function (marker) {
+      const name = marker.getAttribute("data-marker");
+      if (!name) return;
+
+      const block = marker.closest(".sqs-block");
+      const section = marker.closest(".page-section");
+
+      if (block) {
+        block.classList.add(name + "-block");
+        marker.remove();
+        return;
       }
-    }
 
-    insertCustomMenu();
-
-    const headerObserver = new MutationObserver(insertCustomMenu);
-    headerObserver.observe(document.body, { childList: true, subtree: true });
-
-    // Main popout menu functionality
-    const hamburger = document.getElementById("custom-hamburger");
-    const popOutMenu = document.getElementById("custom-pop-out");
-    const popoutMenuContent = document.getElementById("custom-popout-menu");
-    const textEl = hamburger ? hamburger.querySelector(".custom-burger-text") : null;
-    const headerTitle = document.querySelector(".header-title");
-    const headerNav = document.querySelector(".header-nav");
-    const defaultText = textEl ? textEl.textContent : "Menu";
-    const openText = "Close";
-
-    const isPopoutMenuPage = () => window.location.pathname === "/desktop-menu";
-    const isEditMode = () => document.body.classList.contains("sqs-edit-mode");
-
-    function handleEditMode() {
-      if (!hamburger || !popOutMenu) return;
-
-      const expanded = isPopoutMenuPage() && isEditMode();
-      hamburger.setAttribute("aria-expanded", String(expanded));
-      popOutMenu.classList.toggle("menu-visible", expanded);
-      popOutMenu.classList.toggle("menu-hidden", !expanded);
-
-      if (textEl) textEl.textContent = expanded ? openText : defaultText;
-
-      // Hide/show header elements
-      if (headerTitle) headerTitle.style.opacity = expanded ? "0" : "1";
-      if (headerNav) headerNav.style.opacity = expanded ? "0" : "1";
-    }
-
-    // Fetch menu content from /desktop-menu page
-    if (popoutMenuContent) {
-      fetch("/desktop-menu")
-        .then((res) => res.text())
-        .then((html) => {
-          const doc = new DOMParser().parseFromString(html, "text/html");
-          const content = doc.querySelector("#page .page-section");
-          if (content) popoutMenuContent.innerHTML = content.outerHTML;
-        })
-        .catch(() => {});
-    }
-
-    handleEditMode();
-
-    const modeObserver = new MutationObserver(handleEditMode);
-    modeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-
-    // Toggle menu on click
-    if (hamburger) {
-      hamburger.addEventListener("click", function () {
-        if (isEditMode() && isPopoutMenuPage()) return;
-        if (!popOutMenu) return;
-
-        const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
-        hamburger.setAttribute("aria-expanded", String(!isExpanded));
-        popOutMenu.classList.toggle("menu-visible");
-        popOutMenu.classList.toggle("menu-hidden");
-
-        // Hide/show header elements
-        if (headerTitle) {
-          headerTitle.style.transition = "opacity 0.3s ease";
-          headerTitle.style.opacity = isExpanded ? "1" : "0";
-        }
-        if (headerNav) {
-          headerNav.style.transition = "opacity 0.3s ease";
-          headerNav.style.opacity = isExpanded ? "1" : "0";
-        }
-
-        if (textEl) {
-          textEl.style.opacity = "0";
-          setTimeout(() => {
-            textEl.textContent = isExpanded ? defaultText : openText;
-            textEl.style.opacity = "1";
-          }, 400);
-        }
-      });
-    }
-
-    // DATA ATTRIBUTES
-    const heroSection = document.querySelector(".page-section:nth-of-type(1)");
-    if (heroSection) heroSection.setAttribute("data-section", "hero");
-
-    const approachSection = document.querySelector(".page-section:nth-of-type(2)");
-    if (approachSection) approachSection.setAttribute("data-section", "approach");
-
-    const portfolioSection = document.querySelector(".page-section:nth-of-type(4)");
-    if (portfolioSection) portfolioSection.setAttribute("data-section", "portfolio-projects");
-
-    const approachShapes = document.querySelectorAll(
-      '[data-section="approach"] .sqs-block[data-definition-name="website.components.shape"]'
-    );
-    if (approachShapes[0]) approachShapes[0].setAttribute("data-shape", "shape-bg");
-
-    const pinnedText = document.querySelector("#hero-text .fe-block:first-of-type");
-    if (pinnedText) pinnedText.setAttribute("data-block", "pinned-text");
+      if (section) {
+        section.classList.add(name + "-section");
+        marker.remove();
+      }
+    });
   }
 
+  /* =========================
+     OPACITY FIX
+     ========================= */
+  function dimFirstTwoApproachImages() {
+    const section = document.querySelector('section[data-section="approach"]');
+    if (!section) return;
+
+    const images = section.querySelectorAll(".sqs-block-image img");
+
+    images.forEach((img) => (img.style.opacity = ""));
+
+    if (images[0]) images[0].style.opacity = "0.9";
+    if (images[1]) images[1].style.opacity = "0.9";
+  }
+
+  /* =========================
+     GALLERY / PORTFOLIO OVERLAYS
+     ========================= */
+  function addTitleOverlays() {
+    // Carousel slides
+    const slides = document.querySelectorAll("a.sqs-gallery-design-strip-slide");
+
+    slides.forEach((slide) => {
+      if (slide.querySelector(".custom-gallery-title")) return;
+
+      const img = slide.querySelector("img[alt]");
+      const alt = img ? (img.getAttribute("alt") || "").trim() : "";
+      if (!alt) return;
+
+      const titleOverlay = document.createElement("div");
+      titleOverlay.className = "custom-gallery-title";
+      titleOverlay.textContent = alt;
+      slide.appendChild(titleOverlay);
+    });
+
+    // Standalone img slides
+    const imgSlides = document.querySelectorAll("img.sqs-gallery-design-strip-slide[alt]");
+    imgSlides.forEach((img) => {
+      const parent = img.parentElement;
+      if (!parent) return;
+      if (parent.querySelector(".custom-gallery-title")) return;
+
+      parent.style.position = "relative";
+
+      const alt = (img.getAttribute("alt") || "").trim();
+      if (!alt) return;
+
+      const titleOverlay = document.createElement("div");
+      titleOverlay.className = "custom-gallery-title";
+      titleOverlay.textContent = alt;
+      parent.appendChild(titleOverlay);
+    });
+
+    // Portfolio grid items
+    const gridItems = document.querySelectorAll(".portfolio-grid-basic .grid-item");
+    gridItems.forEach((item) => {
+      if (item.querySelector(".custom-gallery-title")) return;
+
+      const gridImage = item.querySelector(".grid-image");
+      if (!gridImage) return;
+
+      gridImage.style.position = "relative";
+
+      const titleOverlay = document.createElement("div");
+      titleOverlay.className = "custom-gallery-title portfolio-view-project";
+      titleOverlay.textContent = "View Project";
+
+      gridImage.appendChild(titleOverlay);
+    });
+  }
+
+  /* =========================
+     BLOG HOVER OVERLAY
+     ========================= */
+  function addBlogHoverText() {
+    const blogPosts = document.querySelectorAll(".blog-basic-grid--container");
+
+    blogPosts.forEach((post) => {
+      if (post.querySelector(".custom-blog-hover")) return;
+
+      const imageWrapper = post.querySelector(".image-wrapper");
+      if (!imageWrapper) return;
+
+      const hoverOverlay = document.createElement("div");
+      hoverOverlay.className = "custom-blog-hover";
+      hoverOverlay.textContent = "Read More";
+
+      imageWrapper.style.position = "relative";
+      imageWrapper.appendChild(hoverOverlay);
+    });
+  }
+
+  /* =========================
+     RUNNERS
+     ========================= */
+  function runAll() {
+    applyMarkers();
+    dimFirstTwoApproachImages();
+    addTitleOverlays();
+    addBlogHoverText();
+  }
+
+  function scheduleReruns() {
+    setTimeout(runAll, 500);
+    setTimeout(runAll, 1500);
+    setTimeout(runAll, 2500);
+  }
+
+  function observeDomChanges() {
+    const obs = new MutationObserver(function () {
+      runAll();
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Init
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", function () {
+      runAll();
+      scheduleReruns();
+      observeDomChanges();
+    });
   } else {
-    init();
+    runAll();
+    scheduleReruns();
+    observeDomChanges();
   }
+
+  // Re-run on gallery control clicks
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".sqs-gallery-controls")) {
+      setTimeout(addTitleOverlays, 500);
+    }
+  });
 })();
