@@ -553,3 +553,9 @@ footer a:hover {
     margin-left: 0px;
 }
 }  
+
+
+#desktop-menu .menu-item-active a {
+    font-style: italic !important;
+  }
+
