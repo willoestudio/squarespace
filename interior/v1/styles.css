@@ -66,10 +66,14 @@ html {
   background: currentColor;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.header-nav-item a:hover::after {
-  width: 100%;
+/* Active page always shows underline */
+.header-nav-item--active a::after,
+.header-nav-item a.is-active::after {
+  width: 100% !important;
+  transition: none; /* Remove transition so it doesn't animate on hover */
 }
-/* Remove active page underline completely */
+
+/* Remove Squarespace's default active page underline */
 .header-nav-item--active a,
 .header-nav-item a.is-active {
   background-image: none !important;
