@@ -119,6 +119,7 @@
     dimFirstTwoApproachImages();
     addGalleryOverlays();
     addBlogHoverText();
+    fixCartNavPadding();
   }
 
   function scheduleRetries() {
@@ -150,4 +151,21 @@
   } else {
     init();
   }
+
+  /* =========================
+   CART NAV PADDING FIX
+   ========================= */
+function fixCartNavPadding() {
+  var cart = document.querySelector('.showOnDesktop .header-actions-action--cart');
+  var navList = document.querySelector('.header-nav-list');
+  
+  if (cart && navList) {
+    var cartWidth = cart.offsetWidth;
+    if (cartWidth > 0) {
+      var currentPadding = 40;
+      navList.style.paddingRight = (currentPadding + cartWidth + 20) + 'px';
+    }
+  }
+}
 })();
+
