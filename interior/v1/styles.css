@@ -559,3 +559,9 @@ footer a:hover {
     font-style: italic !important;
   }
 
+
+.header-actions-action.header-actions-action--cart {
+    margin-right: 1.2vw !important;
+}
+
+
